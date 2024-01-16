@@ -25,18 +25,9 @@ function encrypt_key_with_user_password(key, password) {
 }
 
 function send_encrypted_key(encrypted_key) {
-    const xhr = new XMLHttpRequest();
-    let postObj = {
-        key: encrypted_key.toString()
-    }
-    let post = JSON.stringify(postObj);
-    xhr.onreadystatechange = function() {
-        let data = this.responseText;
-        return data;
-    }
-    xhr.open("POST", "/crypto/create_key.php", false);
-    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
-    xhr.send(post);
+    $.post("/crypto/create_key.php", {key: encrypted_key.toString()}, function() {
+        // nothing
+    });
 }
 
 function generate_key_and_set(password) {

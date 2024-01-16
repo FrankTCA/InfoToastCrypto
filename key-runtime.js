@@ -17,7 +17,7 @@ function generate_random_number_key() {
 }
 
 function save_random_number_key_client(key) {
-    localStorage.set("enc_key", key)
+    localStorage.setItem("enc_key", key)
 }
 
 function encrypt_key_with_user_password(key, password) {
@@ -27,7 +27,7 @@ function encrypt_key_with_user_password(key, password) {
 function send_encrypted_key(encrypted_key) {
     const xhr = new XMLHttpRequest();
     let postObj = {
-        key: encrypted_key
+        key: encrypted_key.toString()
     }
     let post = JSON.stringify(postObj);
     xhr.onreadystatechange = function() {

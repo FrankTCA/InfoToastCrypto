@@ -30,10 +30,10 @@ function send_encrypted_key(encrypted_key) {
         key: encrypted_key
     }
     let post = JSON.stringify(postObj);
-    xhr.onreadystatechange(function() {
+    xhr.onreadystatechange = function() {
         let data = this.responseText;
         return data;
-    });
+    }
     xhr.open("POST", "/crypto/create_key.php", false);
     xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
     xhr.send(post);
@@ -50,7 +50,7 @@ function generate_key_and_set(password) {
 function load_encrypted_key_from_server() {
     const xhr = new XMLHttpRequest();
     var value = null;
-    xhr.onreadystatechange(function() {
+    xhr.onreadystatechange = function() {
         if (this.status === 200) {
             if (this.responseText.startsWith("key")) {
                 let splitResponse = this.responseText.split(",");
@@ -59,8 +59,8 @@ function load_encrypted_key_from_server() {
                 value = null;
             }
         }
-    });
-    xhr.open("GET", "/crypto/get_encrypted_key", false);
+    }
+    xhr.open("GET", "/crypto/get_encrypted_key.php", false);
     xhr.send();
     return value;
 }

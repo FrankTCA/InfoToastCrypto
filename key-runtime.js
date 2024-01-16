@@ -76,7 +76,8 @@ function load_random_number_key_client() {
 function decrypt_on_login(password) {
     let key = load_encrypted_key_from_server();
     if (key == null) {
-        return false;
+        generate_key_and_set(password);
+        return true;
     }
     let decrypted_key = decrypt_key(password, key);
     save_random_number_key_client(decrypted_key);

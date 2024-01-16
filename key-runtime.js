@@ -34,7 +34,7 @@ function send_encrypted_key(encrypted_key) {
         let data = this.responseText;
         return data;
     });
-    xhr.open("POST", "create_key.php", false);
+    xhr.open("POST", "/crypto/create_key.php", false);
     xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
     xhr.send(post);
 }
@@ -60,7 +60,7 @@ function load_encrypted_key_from_server() {
             }
         }
     });
-    xhr.open("GET", "get_encrypted_key", false);
+    xhr.open("GET", "/crypto/get_encrypted_key", false);
     xhr.send();
     return value;
 }

@@ -82,5 +82,10 @@ function decryptText(text) {
 
 function encryptText(text) {
     let key = load_random_number_key_client();
-    return CryptoJS.AES.encrypt(text, key);
+    let encrypted = CryptoJS.AES.encrypt(text, key);
+    if (encrypted.toString().includes(" ")) {
+        console.log("Bad encryption attempt: " + encrypted.toString());
+        return encryptText(text);
+    }
+    return encrypted;
 }
